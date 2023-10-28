@@ -40,7 +40,7 @@ You can generate the synthetic data and related intermediate result first with `
 
 __3. Batched Experiment reported in the paper__
 
-`Exp_E.m` and `Exp_F.m` are the code for generating the random experiment data of Essential matrix and Fundamental matrix respectively. After generating the data, the statistics of the distances from the target points to the degerneated curve can be computed using Julia script `curve45D_SynExp.jl` and `curve65D_SynExp.jl` . 
+`Exp_E.m` and `Exp_F.m` are the code for generating the random experiment data of Essential matrix and Fundamental matrix respectively. After generating the data, the statistics of the distances from the target points to the degenerated curve can be computed using Julia script `curve45D_SynExp.jl` and `curve65D_SynExp.jl` . 
 
 __4. Symbolic 6.5D curve generator__
 
