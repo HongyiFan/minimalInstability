@@ -1,52 +1,60 @@
-# The Analysis of the Instability of minimal problems.
-__Introduction__
+# Analysis of the Instability of Minimal Problems
 
-This is the reaseach code of the project: Analysis of the Instability of Minimal Problem in Computer Vision. 
+## Introduction
 
-The related paper can be reached on ArXiv: [Missing link]
+This repository contains the research code for the following papers:
 
-The authors include:
+Fan, Hongyi, Joe Kileel, and Benjamin Kimia. "On the instability of relative pose estimation and RANSAC's role." Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition. 2022.
+Fan, Hongyi, Joe Kileel, and Benjamin Kimia. "Condition numbers in multiview geometry,  instability in relative pose estimation, and RANSAC." To appear in IEEE Transactions on Pattern Analysis and Machine Intelligence. 2025.
 
-[Joe Kileel, Ph.D.](https://web.ma.utexas.edu/users/jkileel/)
+The authors are:
+- [Hongyi Fan, Ph.D.](https://scholar.google.com/citations?user=aoz5NaQAAAAJ&hl=en&oi=ao)
+- [Joe Kileel, Ph.D.](https://web.ma.utexas.edu/users/jkileel/)  
+- [Benjamin Kimia, Ph.D.](https://vivo.brown.edu/display/bkimia)  
 
-[Benjamin Kimia, Ph.D.](https://vivo.brown.edu/display/bkimia)
 
-[Hongyi Fan](http://vision2.lems.brown.edu/graduateStudents/hongyi/Hongyi%20Fan.html)
+## Prerequisites
 
+To use this repository, you will need:
 
-__Prerequisite__
+- [MATLAB](https://www.mathworks.com/products/matlab.html)  
+- [Julia](https://julialang.org/) and the package [HomotopyContinuation.jl](https://www.juliahomotopycontinuation.org/)  
+- [Macaulay2](http://www2.macaulay2.com/Macaulay2/)
 
-To use this repository you need: 
+## Important Note
 
-+ [MATLAB](https://www.mathworks.com/products/matlab.html)
-+ [Julia](https://julialang.org/) and [HomotopyContinuation.jl](https://www.juliahomotopycontinuation.org/)
-+ [Macaulay2](http://www2.macaulay2.com/Macaulay2/)
-
-__Important Note__
-
-This repository is still in development. 
+This repository is still under active development.
 
 ---
 
-### File List and Usage
+## File List and Usage
 
-__1. Generating 6.5D Degenerate Curve using the method described in the paper__
+### 1. Generating the 6.5D Degenerate Curve
 
-You can generate the synthetic data and related intermediate result first with `main_65Dcurve.m` with Matlab; then run `curve65D.jl` to generate the curve with Julia. Finally, one can use the related drawing code in `main_65Dcurve.m` to show the 6.5D degenerate curve.
+To generate synthetic data and intermediate results, first run `main_65Dcurve.m` in MATLAB.  
+Next, run `curve65D.jl` in Julia to generate the curve.  
+Finally, use the visualization code in `main_65Dcurve.m` to display the 6.5D degenerate curve.
 
-__2. Generating 4.5D Degenerate Curve using the method described in the paper__
+### 2. Generating the 4.5D Degenerate Curve
 
-You can generate the synthetic data and related intermediate result first with `main_45Dcurve.m` with Matlab; then run `curve45D.jl` to generate the curve with Julia. Finally, one can use the related drawing code in `main_45Dcurve.m` to show the 4.5D degenerate curve.
+To generate synthetic data and intermediate results, run `main_45Dcurve.m` in MATLAB.  
+Then run `curve45D.jl` in Julia to compute the curve.  
+Use the drawing code in `main_45Dcurve.m` to visualize the 4.5D degenerate curve.
 
-__3. Batched Experiment reported in the paper__
+### 3. Batched Experiments Reported in the Paper
 
-`Exp_E.m` and `Exp_F.m` are the code for generating the random experiment data of Essential matrix and Fundamental matrix respectively. After generating the data, the statistics of the distances from the target points to the degenerated curve can be computed using Julia script `curve45D_SynExp.jl` and `curve65D_SynExp.jl` . 
+`Exp_E.m` and `Exp_F.m` generate the random experiment data for the Essential matrix and Fundamental matrix, respectively.  
+After generating the data, use the Julia scripts `curve45D_SynExp.jl` and `curve65D_SynExp.jl` to compute statistics for the distances from target points to the degenerate curves.
 
-__4. Symbolic 6.5D curve generator__
+### 4. Symbolic 6.5D Curve Generator
 
-`shortFdisc.m2` is the Macaulay2 code for quickly generating the symbolic expression of 6.5D curve. To use this with custom data, one needs to change line 48 and 49 with the coordinates with image points on two images, (X for the first camera, and Y for the second camera). To reach the best result, one also needs to specify a high precision of the number. For example, one can replace line 48 with
+`shortFdisc.m2` is a Macaulay2 script that quickly generates the symbolic expression of the 6.5D curve.  
+To use custom data, modify lines **48** and **49** with the coordinates of the image points from the two images (X for the first camera, Y for the second).
+
+For best results, specify high-precision numbers. For example, replace line 48 with:
+
+```macaulay2
+X = matrix{{1p100,2p100,3p100,4p100,5p100,6p100,7p100},
+           {1p100,2p100,3p100,4p100,5p100,6p100,7p100}}
 ```
-X = matrix{{1p100,2p100,3p100,4p100,5p100,6p100,7p100},{1p100,2p100,3p100,4p100,5p100,6p100,7p100}}
-```
-indicating image points (1,1), (2,2), (3,3), ..., (7,7).
- 
+This corresponds to the image points (1,1), (2,2), (3,3), …, (7,7).
